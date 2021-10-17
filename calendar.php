@@ -51,6 +51,7 @@ session_start();
 
             for(var d in days){
                 var newTd = newTr.appendChild(document.createElement("td"));
+                newTd.className = "calendar-content-table-cell";
                 newTd.appendChild(document.createTextNode(days[d].getDate()));
             }
 
