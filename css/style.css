@@ -3,6 +3,7 @@
     border: 1px solid black;
 }
 
+.calendar-content-table-cell-header,
 .calendar-content-table-cell{
     width: auto;
     border: 1px solid black;
