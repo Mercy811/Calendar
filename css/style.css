@@ -1,0 +1,9 @@
+.calendar-content-table{
+    width: 100%;
+    border: 1px solid black;
+}
+
+.calendar-content-table-cell{
+    width: auto;
+    border: 1px solid black;
+}
