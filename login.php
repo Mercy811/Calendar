@@ -43,6 +43,7 @@ if (password_verify($pwd_input, $password)) {
     echo json_encode(array(
         "success" => true,
         "user_id" => $user_id,
+        "username" => $user_input
     ));
     exit;
 } else {

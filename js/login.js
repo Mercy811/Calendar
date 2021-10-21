@@ -2,6 +2,8 @@ function loginJudge(data){
     if (data.success){
         document.getElementById("login-container").style.display = "none";
         document.getElementById("calendar-container").style.display = "block";
+        setCookie("user_id",data.user_id,1);
+        setCookie("username",data.username,1);
     }else{
         document.getElementById("login-msg").innerHTML = data.msg;
     }
