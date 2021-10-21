@@ -2,8 +2,10 @@ function loginJudge(data){
     if (data.success){
         document.getElementById("login-container").style.display = "none";
         document.getElementById("calendar-container").style.display = "block";
+        document.getElementById("welcome-user").innerHTML = "Welcome, "+data.username;
         setCookie("user_id",data.user_id,1);
         setCookie("username",data.username,1);
+        document.getElementById("login-msg").innerHTML = "";
     }else{
         document.getElementById("login-msg").innerHTML = data.msg;
     }

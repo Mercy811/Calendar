@@ -77,4 +77,7 @@ document.getElementById("next-month-btn").addEventListener("click", function (ev
 
 document.getElementById("selected-month").innerHTML = currentMonth.year + " " + getMonthName(currentMonth);
 
-
+let username = getCookie("username");
+    if(username){
+        document.getElementById("welcome-user").innerHTML = "Welcome, "+username;
+    }

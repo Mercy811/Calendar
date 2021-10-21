@@ -3,5 +3,6 @@ document.addEventListener('DOMContentLoaded', (event)=>{
     if(username){
         document.getElementById("login-container").style.display = "none";
         document.getElementById("calendar-container").style.display = "block";
+        document.getElementById("welcome-user").innerHTML = "Welcome, "+username;
     }
 })
