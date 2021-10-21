@@ -21,6 +21,28 @@
 
     <!-- signup -->
 
+    <!-- event -->
+    <div id="new-event-container">
+        <p>
+            <button id="new-event-btn">New Event</button>
+        </p>
+
+        <div id="new-event-dialog" title="New Event">
+            <form action="" method="post">
+                <p><label>Title:</label></p>
+                <input id="title" name="title" type="text">
+                
+                <p><label>Start Time:</label></p>
+                <input id="start-time" name="start-time" type="text">
+                
+                <p><label>End Time:</label></p>
+                <input id="end-time" name="end-time" type="text">
+
+                <p><input id="submit" type="submit" value="Create Event"></p>
+            </form>
+        </div>
+    </div>
+
     <!-- calendar content -->
     <div id="calendar-container" style="display: none;">
         <p id="welcome-user"></p>
@@ -51,12 +73,33 @@
     </div>
 
     <script type="text/javascript" src="http://classes.engineering.wustl.edu/cse330/content/calendar.min.js"></script>
+
+    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/start/jquery-ui.css" type="text/css"
+        rel="Stylesheet" />
+    <!-- We need the style sheet linked
+ above or the dialogs/other parts of jquery-ui won't display correctly!-->
+
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
+    <!-- The main library. 
+Note: must be listed before the jquery-ui library -->
+
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js"></script>
+    <!-- jquery-UI 
+hosted on Google's Ajax CDN-->
+    <!-- Note: you can download the javascript file from the link
+
+provided on the google doc, or simply provide its URL
+
+in the src attribute (microsoft and google also host the jQuery
+
+library-->
+
     <script type="text/javascript" src="js/cookie.js"></script>
     <script type="text/javascript" src="js/page-load.js"></script>
     <script type="text/javascript" src="js/calendar.js"></script>
     <script type="text/javascript" src="js/login.js"></script>
     <script type="text/javascript" src="js/logout.js"></script>
-    
+    <script type="text/javascript" src="js/event.js"></script>
 
 </body>
 
