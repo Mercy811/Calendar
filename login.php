@@ -18,15 +18,18 @@ $pwd_input = $json_obj['password'];
 require 'database.php';
 $stmt = $mysqli->prepare("select user_id, password from users where username=?");
 
-// if (!$stmt) {
-//     $msg = "Query Prep Failed: %{$mysqli->error}\n";
-//     exit;
-// }
+if (!$stmt) {
+    $msg = "Query Prep Failed: %{$mysqli->error}\n";
+    echo json_encode(array(
+        "msg" => $msg
+    ));
+    exit;
+}
 
 $stmt->bind_param('s', $user_input);
 $stmt->execute();
 
-$stmt->bind_result($count, $user_id, $password);
+$stmt->bind_result($user_id, $password);
 $stmt->fetch();
 $stmt->close();
 
@@ -44,7 +47,8 @@ if (password_verify($pwd_input, $password)) {
     exit;
 } else {
     echo json_encode(array(
-        "success" => false
+        "success" => false,
+        "msg" => "Wrong Password!"
     ));
     exit;
 }

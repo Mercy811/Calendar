@@ -28,7 +28,7 @@
             })
                 .then(response => response.json())
                 // .then(data => console.log(data.success ? `Youve been logged in!\n msg: ${data.msg}` : `message: ${data.msg} | input ${data.user_input}, ${data.pwd_input} | username: ${data.username}, id: ${data.user_id}, password: ${data.password}`))
-                // .then(data => console.log(`count: ${data.count} | input: ${data.user_input}, ${data.pwd_input} | id: ${data.user_id}, password: ${data.password}`))
+                .then(data => console.log(`count: ${data.count} | input: ${data.user_input}, ${data.pwd_input} | id: ${data.user_id}, password: ${data.password}`))
                 .catch(error => console.error('Error:', error))
         }
 

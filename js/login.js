@@ -1,3 +1,13 @@
+function loginJudge(data){
+    if (data.success){
+        document.getElementById("login-container").style.display = "none";
+        document.getElementById("calendar-container").style.display = "block";
+    }else{
+        document.getElementById("login-msg").innerHTML = data.msg;
+    }
+    
+}
+
 
 function loginAjax(event) {
     const username = document.getElementById("username").value; // Get the username from the form
@@ -12,7 +22,7 @@ function loginAjax(event) {
         headers: { 'content-type': 'application/json' }
     })
         .then(response => response.json())
-        
+        .then(data => loginJudge(data))
         .catch(error => console.error('Error:', error))
 }
 

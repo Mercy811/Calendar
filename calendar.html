@@ -11,38 +11,41 @@
 
 <body>
     <!-- login -->
-    <h1>Sign up</h1>
-    <p><input type="text" id="username" placeholder="username"></p>
-    <p><input type="password" id="password" placeholder="password"></p>
-    <button id="login-btn">Login</button>
+    <div id="login-container">
+        <h1>Sign up</h1>
+        <p><input type="text" id="username" placeholder="username"></p>
+        <p><input type="password" id="password" placeholder="password"></p>
+        <button id="login-btn">Login</button>
+        <p id="login-msg"></p>
+    </div>
 
     <!-- signup -->
 
     <!-- calendar content -->
-    <p id="welcome-user"></p>
-    <h1 id="selected-month">
-    </h1>
-    <p>
-        <button id="previous-month-btn">
-            < </button>
-                <button id="current-month-btn">Today</button>
-                <button id="next-month-btn"> > </button>
-    </p>
-    <p>
-    <table id="calendar-content-table">
-        <tr>
-            <th class="calendar-content-table-cell-header">Sun</th>
-            <th class="calendar-content-table-cell-header">Mon</th>
-            <th class="calendar-content-table-cell-header">Tue</th>
-            <th class="calendar-content-table-cell-header">Wed</th>
-            <th class="calendar-content-table-cell-header">Thu</th>
-            <th class="calendar-content-table-cell-header">Fri</th>
-            <th class="calendar-content-table-cell-header">Sat</th>
-        </tr>
-    </table>
-    </p>
-
-
+    <div id="calendar-container" style="display: none;">
+        <p id="welcome-user"></p>
+        <h1 id="selected-month">
+        </h1>
+        <p>
+            <button id="previous-month-btn">
+                < </button>
+                    <button id="current-month-btn">Today</button>
+                    <button id="next-month-btn"> > </button>
+        </p>
+        <p>
+        <table id="calendar-content-table">
+            <tr>
+                <th class="calendar-content-table-cell-header">Sun</th>
+                <th class="calendar-content-table-cell-header">Mon</th>
+                <th class="calendar-content-table-cell-header">Tue</th>
+                <th class="calendar-content-table-cell-header">Wed</th>
+                <th class="calendar-content-table-cell-header">Thu</th>
+                <th class="calendar-content-table-cell-header">Fri</th>
+                <th class="calendar-content-table-cell-header">Sat</th>
+            </tr>
+        </table>
+        </p>
+    </div>
 
     <script type="text/javascript" src="http://classes.engineering.wustl.edu/cse330/content/calendar.min.js"></script>
     <script type="text/javascript" src="js/calendar.js"></script>
