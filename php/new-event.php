@@ -13,8 +13,6 @@ $start_time = $json_obj['start_time'];
 $end_time = $json_obj['end_time'];
 $duration = $json_obj['duration'];
 
-// $start_time = date('Y-m-d H:i:s');
-
 $msg = '';
 
 if(!empty($title) && !empty($start_time) && !empty($end_time)){
@@ -33,12 +31,12 @@ if(!empty($title) && !empty($start_time) && !empty($end_time)){
     $stmt->execute();
     $stmt->close();
     echo json_encode(array(
-        $msg => "New Story Created Successfully!"
+        $msg => "New Event Created Successfully!"
     ));
     exit;
 }else{
     echo json_encode(array(
-        $msg => "Please title your story."
+        $msg => "Please Fill Required Field."
     ));
     exit;
     

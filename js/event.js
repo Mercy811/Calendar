@@ -21,7 +21,7 @@ function newEventAjax(event){
                   'title':title,
                   'start_time':start_time,
                   'end_time':end_time,
-                  'duration':10,
+                  'duration':(new Date(end_time) - new Date(start_time))/60000,
                   'event_content':event_content};
     console.log(data);
 
