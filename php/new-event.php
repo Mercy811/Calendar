@@ -13,8 +13,6 @@ $start_time = $json_obj['start_time'];
 $end_time = $json_obj['end_time'];
 $duration = $json_obj['duration'];
 
-$msg = '';
-
 if(!empty($title) && !empty($start_time) && !empty($end_time)){
     $stmt = $mysqli->prepare("insert into events 
     (user_id,title,content,start_time,end_time,duration) 
@@ -22,7 +20,7 @@ if(!empty($title) && !empty($start_time) && !empty($end_time)){
 
     if (!$stmt){
         echo json_encode(array(
-            $msg => "mysql error"
+            "msg" => "mysql error"
         ));
         exit;
     }
@@ -31,12 +29,12 @@ if(!empty($title) && !empty($start_time) && !empty($end_time)){
     $stmt->execute();
     $stmt->close();
     echo json_encode(array(
-        $msg => "New Event Created Successfully!"
+        "msg" => "New Event Created Successfully!"
     ));
     exit;
 }else{
     echo json_encode(array(
-        $msg => "Please Fill Required Field."
+        "msg" => "Please Fill Required Field."
     ));
     exit;
     

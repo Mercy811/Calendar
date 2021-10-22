@@ -8,6 +8,7 @@ $("#new-event-btn").click(function () {
 
 function newEventResponse(data){
     alert(data.msg);
+    console.log(data.msg);
 }
 
 function newEventAjax(event){
@@ -23,7 +24,6 @@ function newEventAjax(event){
                   'end_time':end_time,
                   'duration':(new Date(end_time) - new Date(start_time))/60000,
                   'event_content':event_content};
-    console.log(data);
 
     fetch("php/new-event.php",{
         method: 'POST',

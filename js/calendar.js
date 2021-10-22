@@ -9,6 +9,7 @@ function loadCalendar(monthObject) {
         for (let d in days) {
             let newTd = newTr.appendChild(document.createElement("td"));
             newTd.className = "calendar-content-table-cell";
+            newTd.id = days[d].toLocaleDateString('en-CA');
             newTd.appendChild(document.createTextNode(days[d].getDate()));
         }
 
