@@ -20,7 +20,7 @@ function loginAjax(event) {
     // Make a URL-encoded string for passing POST data:
     const data = { 'username': username, 'password': password };
 
-    fetch("login.php", {
+    fetch("php/login.php", {
         method: 'POST',
         body: JSON.stringify(data),
         headers: { 'content-type': 'application/json' }
@@ -30,4 +30,5 @@ function loginAjax(event) {
         .catch(error => console.error('Error:', error))
 }
 
-document.getElementById("login-btn").addEventListener("click", loginAjax, false); // Bind the AJAX call to button click
+// Bind the AJAX call to button click
+document.getElementById("login-btn").addEventListener("click", loginAjax, false);

@@ -29,16 +29,26 @@
 
         <div id="new-event-dialog" title="New Event">
             <form action="" method="post">
-                <p><label>Title:</label></p>
-                <input id="title" name="title" type="text">
-                
-                <p><label>Start Time:</label></p>
-                <input id="start-time" name="start-time" type="text">
-                
-                <p><label>End Time:</label></p>
-                <input id="end-time" name="end-time" type="text">
+                <p>
+                    <label>Title:</label>
+                    <input id="title" name="title" type="text">
+                </p>
 
-                <p><input id="submit" type="submit" value="Create Event"></p>
+                <p>
+                    <label>Start Time:</label>
+                    <input id="start-time" name="start-time" type="datetime-local">
+                </p>
+
+                <p>
+                    <label>End Time:</label>
+                    <input id="end-time" name="end-time" type="datetime-local">
+                </p>
+                <p>
+                    <label>Content</label>
+                    <textarea name="event-content" id="event-content" cols="20" rows="5"></textarea>
+                </p>
+
+                <p><button id="create-event-btn">Create Event</button></p>
             </form>
         </div>
     </div>
