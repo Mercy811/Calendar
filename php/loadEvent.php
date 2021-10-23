@@ -2,6 +2,7 @@
 // Since we are sending a JSON response here (not an HTML document), 
 // set the MIME Type to application/json
 header("Content-Type: application/json");
+session_start();
 
 // Because you are posting the data via fetch(), 
 // php has to retrieve it elsewhere.
@@ -12,7 +13,7 @@ $json_obj = json_decode($json_str, true);
 $user_id = $json_obj['user_id'];
 $token = $json_obj['token'];
 
-// if(!isset($_SESSION['username'])){
+// if(!isset($_SESSION['user_id'])){
 //     die("Please Login First!");
 // }else if(!hash_equals($_SESSION['token'], $token)){
 //     die("Wrong Token!");
