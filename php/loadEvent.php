@@ -10,10 +10,17 @@ $json_str = file_get_contents('php://input');
 $json_obj = json_decode($json_str, true);
 
 $user_id = $json_obj['user_id'];
+$token = $json_obj['token'];
+
+// if(!isset($_SESSION['username'])){
+//     die("Please Login First!");
+// }else if(!hash_equals($_SESSION['token'], $token)){
+//     die("Wrong Token!");
+// }
 
 // Retrieve data from mysql 
 require 'database.php';
-$stmt = $mysqli->query("select * from events where user_id=$user_id");
+$stmt = $mysqli->query("select * from events where user_id=$user_id order by start_time");
 
 $data = array();
 while($row = mysqli_fetch_object($stmt)){

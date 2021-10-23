@@ -39,12 +39,16 @@ if (password_verify($pwd_input, $password)) {
     session_start();
     $_SESSION['username'] = $user_input;
     $_SESSION['user_id'] = $user_id;
+    // generate a 32-byte random string
+    // In PHP 7, you can use the following, better technique:
+    // $_SESSION['token'] = bin2hex(random_bytes(32));
     $_SESSION['token'] = bin2hex(openssl_random_pseudo_bytes(32));
 
     echo json_encode(array(
         "success" => true,
         "user_id" => $user_id,
-        "username" => $user_input
+        "username" => $user_input,
+        "token" => $_SESSION['token']
     ));
     exit;
 } else {

@@ -24,7 +24,8 @@ function newEventAjax(event){
                   'start_time':start_time,
                   'end_time':end_time,
                   'duration':(new Date(end_time) - new Date(start_time))/60000,
-                  'event_content':event_content};
+                  'event_content':event_content,
+                  'token':getCookie("token")};
 
     fetch("php/new-event.php",{
         method: 'POST',
@@ -110,7 +111,7 @@ function loadEventAjax(user_id){
     console.log("loadEventAjax");
 
 
-    const data = {'user_id':user_id};
+    const data = {'user_id':user_id,'token':getCookie('token')};
     
     fetch("php/loadEvent.php",{
         method: 'POST',
