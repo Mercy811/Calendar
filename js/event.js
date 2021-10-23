@@ -1,4 +1,5 @@
-
+// ---------------
+// CREATE EVENT
 $("#new-event-dialog").dialog({
     autoOpen: false,
 });
@@ -37,3 +38,32 @@ function newEventAjax(event){
 
 // Bind the AJAX call to button click
 document.getElementById("create-event-btn").addEventListener("click", newEventAjax, false);
+
+// ---------------
+// DISPLAY EVENT
+function loadEvent(data){
+    // for(i in data.events){
+    //     console.log(data.events[i].start_time.substring(0,10));
+    //     let oneEvent = document.createElement("p");
+    //     oneEvent.innerHTML = data.events[i].title;
+    //     document.getElementById(data.events[i].start_time.substring(0,10)).appendChild(oneEvent)
+    // }
+    console.log(data.events);
+
+}
+
+function loadEventAjax(user_id){
+    console.log("loadEventAjax");
+
+
+    const data = {'user_id':user_id};
+    
+    fetch("php/loadEvent.php",{
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: {'content-type': 'application/json'}
+    })
+    .then(response => response.json())
+    .then(data => loadEvent(data))
+    .catch(error => console.error('Error:', error))
+}

@@ -13,9 +13,10 @@ $json_obj = json_decode($json_str, true);
 // Equiavlent to $_POST[]
 $user_id = $json_obj['user_id'];
 
+
 // Retrieve data from mysql 
 require 'database.php';
-$stmt = $mysqli->prepare("select title, content, start_time, end_time, duration from events where user_id = ?");
+$stmt = $mysqli->prepare("select title,content,start_time,end_time,duration from events where user_id=?");
 
 if (!$stmt) {
     $msg = "Query Prep Failed: %{$mysqli->error}\n";
@@ -28,17 +29,14 @@ if (!$stmt) {
 $stmt->bind_param('i', $user_id);
 $stmt->execute();
 
-$stmt->bind_result($title, $content, $start_time, $end_time, $duration);
-$stmt->fetch();
+$stmt->bind_result($title,$content,$start_time,$end_time,$duration);
+while($stmt->fetch()){
+    
+}
 $stmt->close();
 
 echo json_encode(array(
-    "title" => $title,
-    "content" => $content,
-    "start_time" => $start_time,
-    "end_time" => $end_time,
-    "duration" => $duration,
-    "msg" => "success"
+    "events"=>$reponse_data
 ));
 exit;
 
