@@ -42,10 +42,26 @@ document.getElementById("create-event-btn").addEventListener("click", newEventAj
 
 // ---------------
 // DISPLAY EVENT
+
+// Only display events on the "current" month
+function isDisplay(firstDate, LastDate, date){
+    if(date>firstDate && date<LastDate){
+        return true;
+    }else{
+        return false;
+    }
+}
 function loadEvent(data){
+    let table = document.getElementById("calendar-content-table");
+    let firstDateTimeStamp = new Date(table.children[1].firstChild.id.substring(0,10)).getTime();
+    let lastdateTimeStamp = new Date(table.lastChild.lastChild.id.substring(0,10)).getTime();
+
     for(i in data){
-        
         let cellId = data[i].start_time.substring(0,10);
+        if (!isDisplay(firstDateTimeStamp,lastdateTimeStamp,new Date(cellId).getTime())){
+            continue;
+        }
+        
         let eventId = data[i].event_id;
 
         let eventContainer = document.createElement("div");
@@ -108,9 +124,6 @@ function loadEvent(data){
 }
 
 function loadEventAjax(user_id){
-    console.log("loadEventAjax");
-
-
     const data = {'user_id':user_id,'token':getCookie('token')};
     
     fetch("php/loadEvent.php",{
