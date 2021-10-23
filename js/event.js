@@ -24,7 +24,8 @@ function newEventAjax(event){
                   'start_time':start_time,
                   'end_time':end_time,
                   'duration':(new Date(end_time) - new Date(start_time))/60000,
-                  'event_content':event_content};
+                  'event_content':event_content,
+                  'token':getCookie("token")};
 
     fetch("php/new-event.php",{
         method: 'POST',
@@ -41,22 +42,89 @@ document.getElementById("create-event-btn").addEventListener("click", newEventAj
 
 // ---------------
 // DISPLAY EVENT
+
+// Only display events on the "current" month
+function isDisplay(firstDate, LastDate, date){
+    if(date>firstDate && date<LastDate){
+        return true;
+    }else{
+        return false;
+    }
+}
 function loadEvent(data){
-    // for(i in data.events){
-    //     console.log(data.events[i].start_time.substring(0,10));
-    //     let oneEvent = document.createElement("p");
-    //     oneEvent.innerHTML = data.events[i].title;
-    //     document.getElementById(data.events[i].start_time.substring(0,10)).appendChild(oneEvent)
-    // }
-    console.log(data.events);
+    let table = document.getElementById("calendar-content-table");
+    let firstDateTimeStamp = new Date(table.children[1].firstChild.id.substring(0,10)).getTime();
+    let lastdateTimeStamp = new Date(table.lastChild.lastChild.id.substring(0,10)).getTime();
+
+    for(i in data){
+        let cellId = data[i].start_time.substring(0,10);
+        if (!isDisplay(firstDateTimeStamp,lastdateTimeStamp,new Date(cellId).getTime())){
+            continue;
+        }
+        
+        let eventId = data[i].event_id;
+
+        let eventContainer = document.createElement("div");
+        eventContainer.className = "event-container";
+
+        // <p>
+        //     <button id="event-btn-{eventID}">{title}</button>
+        // </p>
+        let eventP = document.createElement("p");
+        let eventBtn = document.createElement("button");
+        eventBtn.id = "event-btn-"+eventId;
+        eventBtn.className = "event-btn"
+        eventBtn.innerHTML = data[i].title;
+        eventP.appendChild(eventBtn);
+
+        // <div id="event-dialog-{eventId}" title="{title}">
+        //     <form>
+        //         <p>{title}</p>
+        //         <p>{start-time}</p>
+        //         <p>{end-time}</p>
+        //         <p>{content}</p>
+        //     </form>
+        // </div>
+        let eventDialog = document.createElement("div");
+        eventDialog.id = "event-dialog-"+eventId;
+        eventDialog.title = "Event Detail";
+        let eventForm = document.createElement("form");
+        let titleP = document.createElement("p");
+        titleP.innerHTML = data[i].title;
+        let startTimeP = document.createElement("p");
+        startTimeP.innerHTML = data[i].start_time;
+        let endTimeP = document.createElement("p");
+        endTimeP.innerHTML = data[i].end_time;
+        let contentP = document.createElement("p");
+        contentP.innerHTML = data[i].content;
+
+        eventForm.appendChild(titleP);
+        eventForm.appendChild(startTimeP);
+        eventForm.appendChild(endTimeP);
+        eventForm.appendChild(contentP);
+        eventDialog.appendChild(eventForm);
+
+        // <div id="event-container">
+        // eventP
+        // eventDialog
+        // </div>
+        eventContainer.appendChild(eventP);
+        eventContainer.appendChild(eventDialog);
+
+        document.getElementById(cellId).appendChild(eventContainer)
+
+        $("#event-dialog-"+eventId).dialog({
+            autoOpen: false,
+        });
+        $("#event-btn-"+eventId).click(function () {
+            $("#event-dialog-"+eventId).dialog("open");
+        });
+    }
 
 }
 
 function loadEventAjax(user_id){
-    console.log("loadEventAjax");
-
-
-    const data = {'user_id':user_id};
+    const data = {'user_id':user_id,'token':getCookie('token')};
     
     fetch("php/loadEvent.php",{
         method: 'POST',

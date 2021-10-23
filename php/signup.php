@@ -4,9 +4,9 @@
     $json_str = file_get_contents('php://input');
     $json_obj = json_decode($json_str, true);
 
-    $user_input = $json_obj['username'];
-    $pwd_input = $json_obj['password'];
-    $re_input = $json_obj['repassword'];
+    $user_input = htmlentities($json_obj['username']);
+    $pwd_input = htmlentities($json_obj['password']);
+    $re_input = htmlentities($json_obj['repassword']);
 
     if ($json_obj['username'] == "") {
         echo json_encode(array("msg" => "Please enter an username."));

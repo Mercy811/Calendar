@@ -1,17 +1,27 @@
 <?php
 require 'database.php';
+session_start();
 
 header("Content-Type: application/json");
 
 $json_str = file_get_contents('php://input');
 $json_obj = json_decode($json_str, true);
 
-$user_id = (int)$json_obj['user_id'];
-$title = $json_obj['title'];
-$event_content = $json_obj['event_content'];
-$start_time = $json_obj['start_time'];
-$end_time = $json_obj['end_time'];
-$duration = $json_obj['duration'];
+// $user_id = (int)htmlentities($json_obj['user_id']);
+$user_id = $_SESSION['user_id'];
+$title = htmlentities($json_obj['title']);
+$event_content = htmlentities($json_obj['event_content']);
+$start_time = htmlentities($json_obj['start_time']);
+$end_time = htmlentities($json_obj['end_time']);
+$duration = htmlentities($json_obj['duration']);
+$token = htmlentities($json_obj['token']);
+
+if(!isset($_SESSION['username'])){
+    die("Please Login First!");
+}else if(!hash_equals($_SESSION['token'], $token)){
+    die("Wrong Token!");
+}
+
 
 if(!empty($title) && !empty($start_time) && !empty($end_time)){
     $stmt = $mysqli->prepare("insert into events 
