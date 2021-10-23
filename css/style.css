@@ -12,3 +12,11 @@
 .new-event-dialog-notice{
     font-size:10px;
 }
+
+.event-btn{
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    text-align: center;
+    font-size: 13px;
+}

@@ -45,20 +45,22 @@ function loadEvent(data){
     for(i in data){
         
         let cellId = data[i].start_time.substring(0,10);
+        let eventId = data[i].event_id;
 
         let eventContainer = document.createElement("div");
         eventContainer.className = "event-container";
 
         // <p>
-        //     <button id="event-btn-{yyyy-mm-dd}">{title}</button>
+        //     <button id="event-btn-{eventID}">{title}</button>
         // </p>
         let eventP = document.createElement("p");
         let eventBtn = document.createElement("button");
-        eventBtn.id = "event-btn-"+cellId;
+        eventBtn.id = "event-btn-"+eventId;
+        eventBtn.className = "event-btn"
         eventBtn.innerHTML = data[i].title;
         eventP.appendChild(eventBtn);
 
-        // <div id="event-dialog-{yyyy-mm-dd}" title="{title}">
+        // <div id="event-dialog-{eventId}" title="{title}">
         //     <form>
         //         <p>{title}</p>
         //         <p>{start-time}</p>
@@ -67,7 +69,7 @@ function loadEvent(data){
         //     </form>
         // </div>
         let eventDialog = document.createElement("div");
-        eventDialog.id = "event-dialog-"+cellId;
+        eventDialog.id = "event-dialog-"+eventId;
         eventDialog.title = "Event Detail";
         let eventForm = document.createElement("form");
         let titleP = document.createElement("p");
@@ -94,11 +96,11 @@ function loadEvent(data){
 
         document.getElementById(cellId).appendChild(eventContainer)
 
-        $("#event-dialog-"+cellId).dialog({
+        $("#event-dialog-"+eventId).dialog({
             autoOpen: false,
         });
-        $("#event-btn-"+cellId).click(function () {
-            $("#event-dialog-"+cellId).dialog("open");
+        $("#event-btn-"+eventId).click(function () {
+            $("#event-dialog-"+eventId).dialog("open");
         });
     }
 
