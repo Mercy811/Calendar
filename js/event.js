@@ -42,13 +42,12 @@ document.getElementById("create-event-btn").addEventListener("click", newEventAj
 // ---------------
 // DISPLAY EVENT
 function loadEvent(data){
-    // for(i in data.events){
-    //     console.log(data.events[i].start_time.substring(0,10));
-    //     let oneEvent = document.createElement("p");
-    //     oneEvent.innerHTML = data.events[i].title;
-    //     document.getElementById(data.events[i].start_time.substring(0,10)).appendChild(oneEvent)
-    // }
-    console.log(data.events);
+    for(i in data){
+        // console.log(data[i]);
+        let oneEvent = document.createElement("p");
+        oneEvent.innerHTML = data[i].title;
+        document.getElementById(data[i].start_time.substring(0,10)).appendChild(oneEvent)
+    }
 
 }
 
