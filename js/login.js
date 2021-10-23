@@ -7,6 +7,7 @@ function loginJudge(data){
         setCookie("username",data.username,1);
         setCookie("token",data.token,1)
         document.getElementById("login-msg").innerHTML = "";
+        loadEventAjax(data.user_id)
     }else{
         document.getElementById("login-msg").innerHTML = data.msg;
     }
