@@ -38,18 +38,19 @@
 
         <div id="new-event-dialog" title="New Event">
             <form action="" method="post">
+                <p id="new-event-dialog-notice">Fields with * are required</p>
                 <p>
-                    <label>Title:</label>
+                    <label>*Title:</label>
                     <input id="title" name="title" type="text">
                 </p>
 
                 <p>
-                    <label>Start Time:</label>
+                    <label>*Start Time:</label>
                     <input id="start-time" name="start-time" type="datetime-local">
                 </p>
 
                 <p>
-                    <label>End Time:</label>
+                    <label>*End Time:</label>
                     <input id="end-time" name="end-time" type="datetime-local">
                 </p>
                 <p>
@@ -114,13 +115,13 @@ in the src attribute (microsoft and google also host the jQuery
 library-->
 
     <script type="text/javascript" src="js/cookie.js"></script>
+    <script type="text/javascript" src="js/event.js"></script>
     <script type="text/javascript" src="js/page-load.js"></script>
     <script type="text/javascript" src="js/calendar.js"></script>
     <script type="text/javascript" src="js/login.js"></script>
     <script type="text/javascript" src="js/signup.js"></script>
     <script type="text/javascript" src="js/logout.js"></script>
-    <script type="text/javascript" src="js/event.js"></script>
-
+    
 </body>
 
 </html>

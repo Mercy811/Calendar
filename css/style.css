@@ -8,3 +8,7 @@
     width: auto;
     border: 1px solid black;
 }
+
+.new-event-dialog-notice{
+    font-size:10px;
+}
