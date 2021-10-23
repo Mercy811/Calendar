@@ -30,5 +30,12 @@ function loginAjax(event) {
         .catch(error => console.error('Error:', error))
 }
 
+function clearInput () {
+    document.getElementById("username").innerHTML = "";
+    document.getElementById("password").innerHTML = "";
+}
 // Bind the AJAX call to button click
 document.getElementById("login-btn").addEventListener("click", loginAjax, false);
+document.getElementById("reset").addEventListener("click", clearInput, false);
+
+

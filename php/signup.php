@@ -13,6 +13,16 @@
         exit;
     }
 
+    if ($json_obj['password'] == "") {
+        echo json_encode(array("msg" => "Please enter a password."));
+        exit;
+    }
+
+    if ($json_obj['repassword'] == "") {
+        echo json_encode(array("msg" => "Please re-enter your password."));
+        exit;
+    }
+
     if($pwd_input != $re_input) {
         echo json_encode(array("msg" => "Passwords do not match!"));
         exit;

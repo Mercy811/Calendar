@@ -13,22 +13,37 @@
     <!-- login -->
     <div id="login-container">
         <h1>Login</h1>
+    
         <p><input type="text" id="username" placeholder="username"></p>
         <p><input type="password" id="password" placeholder="password"></p>
         <button id="login-btn">Login</button>
         <button id="signup-btn">Sign Up Here</button>
+        <button id="reset">reset</button>
         <p id="login-msg"></p>
+    
     </div>
 
     <!-- signup -->
-    <div id="signup-container">
+    <div id="signup-container" style="display: none;" >
         <h1>Sign Up Here</h1>
         <p><input type="text" id="new_username" placeholder="username"></p>
         <p><input type="password" id="new_password" placeholder="password"></p>
         <p><input type="password" id="repassword" placeholder="re-enter password"></p>
         <button id="sign_up_submit">Sign Up Here</button>
+        <button id="reset_signup">reset</button>
+        <button id="back_login">Back to Login</button>
         <p id="signup-msg"></p>
+    
     </div>
+    <script>
+        function displaySignUp () {
+            document.getElementById("signup-container").style.display = "block";
+            document.getElementById("calendar-container").style.display = "none";
+            document.getElementById("login-container").style.display = "none";
+
+        }
+        document.getElementById("signup-btn").addEventListener("click",displaySignUp,false);
+    </script>
 
     <!-- event -->
     <div id="new-event-container">
