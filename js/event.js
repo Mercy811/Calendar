@@ -43,10 +43,63 @@ document.getElementById("create-event-btn").addEventListener("click", newEventAj
 // DISPLAY EVENT
 function loadEvent(data){
     for(i in data){
-        // console.log(data[i]);
-        let oneEvent = document.createElement("p");
-        oneEvent.innerHTML = data[i].title;
-        document.getElementById(data[i].start_time.substring(0,10)).appendChild(oneEvent)
+        
+        let cellId = data[i].start_time.substring(0,10);
+
+        let eventContainer = document.createElement("div");
+        eventContainer.className = "event-container";
+
+        // <p>
+        //     <button id="event-btn-{yyyy-mm-dd}">{title}</button>
+        // </p>
+        let eventP = document.createElement("p");
+        let eventBtn = document.createElement("button");
+        eventBtn.id = "event-btn-"+cellId;
+        eventBtn.innerHTML = data[i].title;
+        eventP.appendChild(eventBtn);
+
+        // <div id="event-dialog-{yyyy-mm-dd}" title="{title}">
+        //     <form>
+        //         <p>{title}</p>
+        //         <p>{start-time}</p>
+        //         <p>{end-time}</p>
+        //         <p>{content}</p>
+        //     </form>
+        // </div>
+        let eventDialog = document.createElement("div");
+        eventDialog.id = "event-dialog-"+cellId;
+        eventDialog.title = "Event Detail";
+        let eventForm = document.createElement("form");
+        let titleP = document.createElement("p");
+        titleP.innerHTML = data[i].title;
+        let startTimeP = document.createElement("p");
+        startTimeP.innerHTML = data[i].start_time;
+        let endTimeP = document.createElement("p");
+        endTimeP.innerHTML = data[i].end_time;
+        let contentP = document.createElement("p");
+        contentP.innerHTML = data[i].content;
+
+        eventForm.appendChild(titleP);
+        eventForm.appendChild(startTimeP);
+        eventForm.appendChild(endTimeP);
+        eventForm.appendChild(contentP);
+        eventDialog.appendChild(eventForm);
+
+        // <div id="event-container">
+        // eventP
+        // eventDialog
+        // </div>
+        eventContainer.appendChild(eventP);
+        eventContainer.appendChild(eventDialog);
+
+        document.getElementById(cellId).appendChild(eventContainer)
+
+        $("#event-dialog-"+cellId).dialog({
+            autoOpen: false,
+        });
+        $("#event-btn-"+cellId).click(function () {
+            $("#event-dialog-"+cellId).dialog("open");
+        });
     }
 
 }
