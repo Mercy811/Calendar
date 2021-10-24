@@ -51,6 +51,27 @@ function isDisplay(firstDate, LastDate, date){
         return false;
     }
 }
+
+//delete event function
+
+function deleteEvent (eventId) {
+    const event_id= eventId;
+    const user_id = getCookie("user_id");
+
+    // Make a URL-encoded string for passing POST data:
+    const data = { 'event_id': event_id, "user_id":user_id};
+
+    fetch("php/delete.php", {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: { 'content-type': 'application/json' }
+    })
+        .then(response => response.json())
+        .catch(error => console.error('Error:', error))
+}
+
+
+// load event funvtion
 function loadEvent(data){
     let table = document.getElementById("calendar-content-table");
     let firstDateTimeStamp = new Date(table.children[1].firstChild.id.substring(0,10)).getTime();
@@ -97,12 +118,21 @@ function loadEvent(data){
         endTimeP.innerHTML = data[i].end_time;
         let contentP = document.createElement("p");
         contentP.innerHTML = data[i].content;
-
+        let contentDeleteBtn = document.createElement("button");
+        contentDeleteBtn.innerHTML = "Delete";
+        contentDeleteBtn.id = "event-delete-"+eventId;
+        let editBtn = document.createElement("button");
+        editBtn.innerHTML = "Edit";
+        editBtn.id = "event-edit-"+eventId;
+        
         eventForm.appendChild(titleP);
         eventForm.appendChild(startTimeP);
         eventForm.appendChild(endTimeP);
         eventForm.appendChild(contentP);
+        eventForm.appendChild(contentDeleteBtn);
+        eventForm.appendChild(editBtn);
         eventDialog.appendChild(eventForm);
+       
 
         // <div id="event-container">
         // eventP
@@ -111,7 +141,9 @@ function loadEvent(data){
         eventContainer.appendChild(eventP);
         eventContainer.appendChild(eventDialog);
 
-        document.getElementById(cellId).appendChild(eventContainer)
+        document.getElementById(cellId).appendChild(eventContainer);
+
+        
 
         $("#event-dialog-"+eventId).dialog({
             autoOpen: false,
@@ -119,6 +151,10 @@ function loadEvent(data){
         $("#event-btn-"+eventId).click(function () {
             $("#event-dialog-"+eventId).dialog("open");
         });
+
+        document.getElementById(contentDeleteBtn.id).addEventListener("click", function(){deleteEvent(eventId)});
+        document.getElementById(editBtn.id).addEventListener("click", function(){editEvent(eventId)});
+
     }
 
 }
@@ -134,4 +170,34 @@ function loadEventAjax(user_id){
     .then(response => response.json())
     .then(data => loadEvent(data))
     .catch(error => console.error('Error:', error))
+}
+
+
+function editEvent (eventId) {
+
+    // $("#edit-"+eventId).dialog({
+    //     autoOpen: false,
+    // });
+    // $("#editBtn"+eventId).click(function () {
+    //     $("#edit-dialog-"+eventId).dialog("open");
+    // });
+
+    $("#edit-"+eventId).dialog({
+        autoOpen: true,
+    });
+
+
+    const event_id= eventId;
+    const user_id = getCookie("user_id");
+
+    // Make a URL-encoded string for passing POST data:
+    const data = { 'event_id': event_id, "user_id":user_id};
+
+    fetch("php/edit.php", {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: { 'content-type': 'application/json' }
+    })
+        .then(response => response.json())
+        .catch(error => console.error('Error:', error))
 }
