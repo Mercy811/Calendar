@@ -1,4 +1,9 @@
 function loadTag(data){
+    if (data.msg){
+        alert(data.msg);
+        return
+    }
+
     let tagContainer = document.getElementById("tags-container");
     for(i in data){
         let tagLabel = document.createElement("label");

@@ -75,6 +75,10 @@ function deleteEvent (eventId) {
 
 // load event funvtion
 function loadEvent(data){
+    if (data.msg){
+        alert(data.msg);
+        return
+    }
     let table = document.getElementById("calendar-content-table");
     let firstDateTimeStamp = new Date(table.children[1].firstChild.id.substring(0,10)).getTime();
     let lastdateTimeStamp = new Date(table.lastChild.lastChild.id.substring(0,10)).getTime();

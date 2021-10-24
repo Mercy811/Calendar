@@ -13,11 +13,15 @@ $json_obj = json_decode($json_str, true);
 $user_id = $json_obj['user_id'];
 $token = $json_obj['token'];
 
-// if(!isset($_SESSION['user_id'])){
-//     die("Please Login First!");
-// }else if(!hash_equals($_SESSION['token'], $token)){
-//     die("Wrong Token!");
-// }
+if(!isset($_SESSION['user_id'])){
+    die(json_encode(array(
+        "msg" => "Please Login First!"
+    )));
+}else if(!hash_equals($_SESSION['token'], $token)){
+    die(json_encode(array(
+        "msg" => "Wrong Token!"
+    )));
+}
 
 // Retrieve data from mysql 
 require 'database.php';
