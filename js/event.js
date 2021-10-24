@@ -110,14 +110,22 @@ function loadEvent(data){
         eventDialog.id = "event-dialog-"+eventId;
         eventDialog.title = "Event Detail";
         let eventForm = document.createElement("form");
-        let titleP = document.createElement("p");
-        titleP.innerHTML = data[i].title;
-        let startTimeP = document.createElement("p");
-        startTimeP.innerHTML = data[i].start_time;
-        let endTimeP = document.createElement("p");
-        endTimeP.innerHTML = data[i].end_time;
-        let contentP = document.createElement("p");
-        contentP.innerHTML = data[i].content;
+        // let titleP = document.createElement("p");
+        // titleP.innerHTML = data[i].title;
+        // let startTimeP = document.createElement("p");
+        // startTimeP.innerHTML = data[i].start_time;
+        // let endTimeP = document.createElement("p");
+        // endTimeP.innerHTML = data[i].end_time;
+        // let contentP = document.createElement("p");
+        // contentP.innerHTML = data[i].content;
+        let titleP = document.createElement("input");
+        titleP.value= data[i].title;
+        let startTimeP = document.createElement("input");
+        startTimeP.value = data[i].start_time;
+        let endTimeP = document.createElement("input");
+        endTimeP.value= data[i].end_time;
+        let contentP = document.createElement("input");
+        contentP.value= data[i].content;
         let contentDeleteBtn = document.createElement("button");
         contentDeleteBtn.innerHTML = "Delete";
         contentDeleteBtn.id = "event-delete-"+eventId;
@@ -153,7 +161,7 @@ function loadEvent(data){
         });
 
         document.getElementById(contentDeleteBtn.id).addEventListener("click", function(){deleteEvent(eventId)});
-        document.getElementById(editBtn.id).addEventListener("click", function(){editEvent(eventId)});
+        document.getElementById(editBtn.id).addEventListener("click", function(){ editEvent(eventId,titleP.value,startTimeP,endTimeP,contentP)});
 
     }
 
@@ -173,25 +181,18 @@ function loadEventAjax(user_id){
 }
 
 
-function editEvent (eventId) {
+function editEvent (eventId, title, startTime, endTime, content) {
 
-    // $("#edit-"+eventId).dialog({
-    //     autoOpen: false,
-    // });
-    // $("#editBtn"+eventId).click(function () {
-    //     $("#edit-dialog-"+eventId).dialog("open");
-    // });
-
-    $("#edit-"+eventId).dialog({
-        autoOpen: true,
-    });
-
-
-    const event_id= eventId;
     const user_id = getCookie("user_id");
-
-    // Make a URL-encoded string for passing POST data:
-    const data = { 'event_id': event_id, "user_id":user_id};
+    const data = {
+                  'event_id': eventId, 
+                  "user_id":user_id,
+                  'title':title,
+                  'start_time':startTime,
+                  'end_time':endTime,
+                  'duration':(new Date(endTime) - new Date(startTime))/60000,
+                  'event_content':content,
+                  'token':getCookie("token")};
 
     fetch("php/edit.php", {
         method: 'POST',
@@ -199,5 +200,6 @@ function editEvent (eventId) {
         headers: { 'content-type': 'application/json' }
     })
         .then(response => response.json())
+        .then(data => alert(data.msg))
         .catch(error => console.error('Error:', error))
 }
