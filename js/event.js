@@ -163,7 +163,7 @@ function loadEvent(data){
         });
 
         document.getElementById(contentDeleteBtn.id).addEventListener("click", function(){deleteEvent(eventId)});
-        document.getElementById(editBtn.id).addEventListener("click", function(){ editEvent(eventId,titleP.value,startTimeP,endTimeP,contentP)});
+        document.getElementById(editBtn.id).addEventListener("click", function(){ editEvent(eventId, titleP.value, startTimeP.value, endTimeP.value, contentP.value)});
 
     }
 
