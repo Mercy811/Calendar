@@ -7,5 +7,6 @@ document.addEventListener('DOMContentLoaded', (event)=>{
         document.getElementById("calendar-container").style.display = "block";
         document.getElementById("welcome-user").innerHTML = "Welcome, "+username;
         loadEventAjax(user_id);
+        loadTagAjax(user_id);
     }
 })

@@ -14,6 +14,7 @@ $event_content = htmlentities($json_obj['event_content']);
 $start_time = htmlentities($json_obj['start_time']);
 $end_time = htmlentities($json_obj['end_time']);
 $duration = htmlentities($json_obj['duration']);
+$tag = htmlentities($json_obj['event_tag']);
 $token = htmlentities($json_obj['token']);
 
 if(!isset($_SESSION['username'])){
@@ -25,8 +26,8 @@ if(!isset($_SESSION['username'])){
 
 if(!empty($title) && !empty($start_time) && !empty($end_time)){
     $stmt = $mysqli->prepare("insert into events 
-    (user_id,title,content,start_time,end_time,duration) 
-    values (?,?,?,?,?,?)");
+    (user_id,title,content,start_time,end_time,duration,tag) 
+    values (?,?,?,?,?,?,?)");
 
     if (!$stmt){
         echo json_encode(array(
@@ -35,7 +36,7 @@ if(!empty($title) && !empty($start_time) && !empty($end_time)){
         exit;
     }
 
-    $stmt->bind_param('isssss',$user_id,$title,$event_content,$start_time,$end_time,$duration);
+    $stmt->bind_param('issssss',$user_id,$title,$event_content,$start_time,$end_time,$duration,$tag);
     $stmt->execute();
     $stmt->close();
     echo json_encode(array(
