@@ -17,6 +17,7 @@ function newEventAjax(event){
     const start_time = document.getElementById("start-time").value;
     const end_time = document.getElementById("end-time").value;
     const event_content = document.getElementById("event-content").value;
+    const event_tag = document.getElementById("event-tag").value;
     const user_id = getCookie("user_id");
 
     const data = {'user_id':user_id,
@@ -25,6 +26,7 @@ function newEventAjax(event){
                   'end_time':end_time,
                   'duration':(new Date(end_time) - new Date(start_time))/60000,
                   'event_content':event_content,
+                  'event_tag':event_tag,
                   'token':getCookie("token")};
 
     fetch("php/new-event.php",{
@@ -104,6 +106,7 @@ function loadEvent(data){
         //         <p>{start-time}</p>
         //         <p>{end-time}</p>
         //         <p>{content}</p>
+        //         <p>{tag}</p>
         //     </form>
         // </div>
         let eventDialog = document.createElement("div");
@@ -118,19 +121,25 @@ function loadEvent(data){
         endTimeP.innerHTML = data[i].end_time;
         let contentP = document.createElement("p");
         contentP.innerHTML = data[i].content;
+        let tagP = document.createElement("p");
+        tagP.innerHTML = data[i].tag;
+
         let contentDeleteBtn = document.createElement("button");
         contentDeleteBtn.innerHTML = "Delete";
         contentDeleteBtn.id = "event-delete-"+eventId;
         let editBtn = document.createElement("button");
         editBtn.innerHTML = "Edit";
         editBtn.id = "event-edit-"+eventId;
-        
+
         eventForm.appendChild(titleP);
         eventForm.appendChild(startTimeP);
         eventForm.appendChild(endTimeP);
         eventForm.appendChild(contentP);
+        eventForm.appendChild(tagP);
+
         eventForm.appendChild(contentDeleteBtn);
         eventForm.appendChild(editBtn);
+
         eventDialog.appendChild(eventForm);
        
 

@@ -45,7 +45,22 @@
         document.getElementById("signup-btn").addEventListener("click",displaySignUp,false);
     </script>
 
-    <!-- event -->
+    <!-- user-info-container -->
+    <div id="user-info-container">
+        <p id="welcome-user"></p>
+        <p>
+            <button id="logout-btn">Logout</button>
+        </p>
+    </div>
+    <hr>
+
+    <!-- tags -->
+    <div id="tags-container">
+        <p>Tags:</p>
+    </div>
+    <hr>
+
+    <!-- new event -->
     <div id="new-event-container">
         <p>
             <button id="new-event-btn">New Event</button>
@@ -72,6 +87,11 @@
                     <label>Content</label>
                     <textarea name="event-content" id="event-content" cols="20" rows="5"></textarea>
                 </p>
+                <p>
+                    <label>Tag</label>
+                    <input type="text" name="event-tag" id="event-tag">
+                </p>
+                
 
                 <p><button id="create-event-btn">Create Event</button></p>
             </form>
@@ -80,10 +100,6 @@
 
     <!-- calendar content -->
     <div id="calendar-container" style="display: none;">
-        <p id="welcome-user"></p>
-        <p>
-            <button id="logout-btn">Logout</button>
-        </p>
         <h1 id="selected-month">
         </h1>
         <p>
@@ -128,6 +144,7 @@ library-->
 
     <script src="js/cookie.js"></script>
     <script src="js/event.js"></script>
+    <script src="js/tag.js"></script>
     <script src="js/page-load.js"></script>
     <script src="js/calendar.js"></script>
     <script src="js/login.js"></script>
