@@ -90,18 +90,23 @@ function loadEvent(data){
         }
         
         let eventId = data[i].event_id;
+        let eventTag = data[i].tag;
 
         let eventContainer = document.createElement("div");
         eventContainer.className = "event-container";
 
         // <p>
-        //     <button id="event-btn-{eventID}">{title}</button>
+        //     <button id="event-btn-{eventID}" class="event-btn">{title}</button>
         // </p>
         let eventP = document.createElement("p");
         let eventBtn = document.createElement("button");
         eventBtn.id = "event-btn-"+eventId;
-        eventBtn.className = "event-btn"
         eventBtn.innerHTML = data[i].title;
+        eventBtn.className = "event-btn"
+        eventBtn.className = eventBtn.className + " event-tag-all";
+        if (eventTag){
+            eventBtn.className = eventBtn.className + " event-tag-"+eventTag;
+        }
         eventP.appendChild(eventBtn);
 
         // <div id="event-dialog-{eventId}" title="{title}">

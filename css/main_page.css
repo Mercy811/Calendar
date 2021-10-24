@@ -1,0 +1,98 @@
+body{
+    width: 960px; /* how wide to make your web page */
+    background-color: lightgray; /* what color to make the background */
+    margin: 0 auto;
+    padding: 0;
+    font:20px/30px Arial, Verdana, sans-serif; /* default font */
+}
+
+h1 {
+    color:hsla(73, 68%, 39%, 0.882);
+    font-size: x-large;
+    font-family: Arial,"Brush Script MT", cursive;
+    text-shadow: 2px 2px hsl(69, 100%, 50%);
+}
+
+h2 {
+    
+    color: hsla(73, 68%, 39%, 0.882);
+    font-size: 70px;
+    font-family: "Brush Script MT", cursive;
+    font-style: italic;
+
+}
+
+table, th, td {
+    border: 1px solid #777;
+    width : 80%;
+    border-collapse: collapse;
+    padding: 5px;
+} /* learn it from https://www.w3schools.com/css/css_table.asp */
+
+p { color:rgb(65, 63, 63);}
+
+input[type=submit] {
+    width: 100%;
+    background-color:hsla(73, 68%, 39%, 0.882);
+    color: white;
+    padding: 2px 3px;
+    margin: 4px 0;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+input[type=submit]:hover {
+    background-color: #4CAF50;
+}
+
+button {
+    width: 100%;
+    background-color:hsla(73, 68%, 39%, 0.882);
+    color: white;
+    padding: 2px 3px;
+    margin: 4px 0;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #4CAF50;
+}
+
+input[type=text], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    }
+
+input[type=password], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    }
+
+
+
+/*https://www.w3schools.com/css/tryit.asp?filename=trycss_forms*/
+ 
+button.month{
+    width: 15%;
+    background-color:hsla(73, 68%, 39%, 0.882);
+    color: white;
+    padding: 2px 3px;
+    margin: 4px 0;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+
+}

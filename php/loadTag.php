@@ -25,8 +25,7 @@ if(!isset($_SESSION['user_id'])){
 
 // Retrieve tag from mysql 
 require 'database.php';
-$stmt = $mysqli->query("select tag from events where user_id=$user_id and tag is not null group by tag;
-");
+$stmt = $mysqli->query("select tag from events where user_id=$user_id and tag is not null group by tag;");
 
 $data = array();
 while($row = mysqli_fetch_object($stmt)){
