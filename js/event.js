@@ -213,6 +213,11 @@ function loadEvent(data){
 
 function loadEventAjax(user_id){
     const data = {'user_id':user_id,'token':getCookie('token')};
+    if (user_id != "100") {
+        document.getElementById("new-event-container").style.display = "block";
+        document.getElementById("tags-container").style.display = "block";
+    }
+        
     
     fetch("php/loadEvent.php",{
         method: 'POST',
@@ -221,7 +226,8 @@ function loadEventAjax(user_id){
     })
     .then(response => response.json())
     .then(data => loadEvent(data))
-    .catch(error => console.error('Error:', error))
+    .catch(error => console.error('Error:', error));
+
 }
 
 

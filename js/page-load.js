@@ -3,8 +3,7 @@ document.addEventListener('DOMContentLoaded', (event)=>{
     let user_id = getCookie("user_id");
 
     if (username){
-
-        if (user_id == 100) {
+        if (user_id == "100" &&username == "guest") {
             document.getElementById("login-container").style.display = "none";
             document.getElementById("signup-container").style.display = "none";
             document.getElementById("calendar-container").style.display = "block";
