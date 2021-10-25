@@ -72,6 +72,33 @@ function deleteEvent (eventId) {
         .catch(error => console.error('Error:', error))
 }
 
+//edit event function
+function editEvent (eventId, title, startTime, endTime, content) {
+
+    const user_id = getCookie("user_id");
+    const data = {
+                  'event_id': eventId, 
+                  "user_id":user_id,
+                  'title':title,
+                  'start_time':startTime,
+                  'end_time':endTime,
+                  'duration':(new Date(endTime) - new Date(startTime))/60000,
+                  'event_content':content,
+                  'token':getCookie("token")};
+
+    fetch("php/edit.php", {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: { 'content-type': 'application/json' }
+    })
+        .then(response => response.json())
+        .then(data => alert(data.msg))
+        .catch((error) => {
+            console.log(error);
+          })
+
+}
+
 
 // load event funvtion
 function loadEvent(data){
@@ -125,12 +152,14 @@ function loadEvent(data){
 
         let titleP = document.createElement("input");
         titleP.value= data[i].title;
+        titleP.id = "event-title-"+eventId;
         let startTimeP = document.createElement("input");
         startTimeP.value = data[i].start_time;
         let endTimeP = document.createElement("input");
-        endTimeP.value= data[i].end_time;
+        endTimeP.value = data[i].end_time;
         let contentP = document.createElement("input");
         contentP.value= data[i].content;
+        contentP.id = "event-content-" + eventId;
         let tagP = document.createElement("input");
         tagP.value = data[i].tag;
 
@@ -139,7 +168,8 @@ function loadEvent(data){
         contentDeleteBtn.id = "event-delete-"+eventId;
         let editBtn = document.createElement("button");
         editBtn.innerHTML = "Edit";
-        editBtn.id = "event-edit-"+eventId;
+        editBtn.id = "event-edit-" + eventId;
+
 
         eventForm.appendChild(titleP);
         eventForm.appendChild(startTimeP);
@@ -172,7 +202,10 @@ function loadEvent(data){
         });
 
         document.getElementById(contentDeleteBtn.id).addEventListener("click", function(){deleteEvent(eventId)});
-        document.getElementById(editBtn.id).addEventListener("click", function(){ editEvent(eventId, titleP.value, startTimeP.value, endTimeP.value, contentP.value)});
+        document.getElementById(editBtn.id).addEventListener("click", function(){editEvent(eventId, titleP.value, startTimeP.value, endTimeP.value, contentP.value)});
+
+        //document.getElementById(contentP.id).addEventListener("input", editEvent(eventId, titleP.value, startTimeP.value, endTimeP.value, contentP.value),true);
+        //document.getElementById(titleP.id).addEventListener("input", editEvent(eventId, titleP.value, startTimeP.value, endTimeP.value, contentP.value),true);
 
     }
 
@@ -192,25 +225,3 @@ function loadEventAjax(user_id){
 }
 
 
-function editEvent (eventId, title, startTime, endTime, content) {
-
-    const user_id = getCookie("user_id");
-    const data = {
-                  'event_id': eventId, 
-                  "user_id":user_id,
-                  'title':title,
-                  'start_time':startTime,
-                  'end_time':endTime,
-                  'duration':(new Date(endTime) - new Date(startTime))/60000,
-                  'event_content':content,
-                  'token':getCookie("token")};
-
-    fetch("php/edit.php", {
-        method: 'POST',
-        body: JSON.stringify(data),
-        headers: { 'content-type': 'application/json' }
-    })
-        .then(response => response.json())
-        .then(data => alert(data.msg))
-        .catch(error => console.error('Error:', error))
-}

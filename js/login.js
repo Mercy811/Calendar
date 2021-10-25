@@ -33,11 +33,10 @@ function loginAjax(event) {
 }
 
 function clearInput () {
-    document.getElementById("username").innerHTML = "";
-    document.getElementById("password").innerHTML = "";
+    document.getElementById("username").value = "";
+    document.getElementById("password").value = "";
 }
 // Bind the AJAX call to button click
 document.getElementById("login-btn").addEventListener("click", loginAjax, false);
-document.getElementById("reset").addEventListener("click", clearInput, false);
-
+// document.getElementById("reset_login").addEventListener("click", function(){clearInput();}, false);
 

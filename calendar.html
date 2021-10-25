@@ -7,19 +7,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>xytCalendar</title>
     <link rel="stylesheet" href="css/style.css">
-    <!-- <link rel="stylesheet" href="css/main_page.css"> -->
+    <link rel="stylesheet" href="css/main_page.css">
 </head>
 
 <body>
     <!-- login -->
     <div id="login-container">
+        <h2>calendar</h2>
         <h1>Login</h1>
     
         <p><input type="text" id="username" placeholder="username"></p>
         <p><input type="password" id="password" placeholder="password"></p>
         <button id="login-btn">Login</button>
         <button id="signup-btn">Sign Up Here</button>
-        <button id="reset">reset</button>
+        <button id="reset_login">reset</button>
+        <button id="login_as_guest">Login as a guest</button>
         <p id="login-msg"></p>
     
     </div>
@@ -31,7 +33,7 @@
         <p><input type="password" id="new_password" placeholder="password"></p>
         <p><input type="password" id="repassword" placeholder="re-enter password"></p>
         <button id="sign_up_submit">Sign Up Here</button>
-        <button id="reset_signup">reset</button>
+        <button id="reset_signup">Reset</button>
         <button id="back_login">Back to Login</button>
         <p id="signup-msg"></p>
     
@@ -43,11 +45,26 @@
             document.getElementById("login-container").style.display = "none";
 
         }
+
+        function guestLogin(){
+            document.getElementById("username").value = "guest";
+            document.getElementById("password").value = "000000000000";
+            loginAjax();
+        }
+
+        function clearLogin(){
+            document.getElementById("username").value = "";
+            document.getElementById("password").value = "";
+        }
+
+
         document.getElementById("signup-btn").addEventListener("click",displaySignUp,false);
+        document.getElementById("login_as_guest").addEventListener("click",guestLogin,false);
+        document.getElementById("reset_login").addEventListener("click",clearLogin,false);
     </script>
 
     <!-- user-info-container -->
-    <div id="user-info-container">
+    <div id="user-info-container" >
         <p id="welcome-user"></p>
         <p>
             <button id="logout-btn">Logout</button>
@@ -56,7 +73,7 @@
     <hr>
 
     <!-- tags -->
-    <div id="tags-container">
+    <div id="tags-container" style="display: none;">
         <p>Tags:</p>
         <input type="checkbox" id="all" checked>
         <label>alll</label><br>
@@ -64,7 +81,7 @@
     <hr>
 
     <!-- new event -->
-    <div id="new-event-container">
+    <div id="new-event-container" style="display: none;">
         <p>
             <button id="new-event-btn">New Event</button>
         </p>
@@ -106,9 +123,9 @@
         <h1 id="selected-month">
         </h1>
         <p>
-            <button id="previous-month-btn"> &lt; </button>
-            <button id="current-month-btn">Today</button>
-            <button id="next-month-btn"> > </button>
+            <button class="month" id="previous-month-btn"> &lt; </button>
+            <button class="month" id="current-month-btn">Today</button>
+            <button class="month" id="next-month-btn"> > </button>
         </p>
             <table id="calendar-content-table">
                 <tr>

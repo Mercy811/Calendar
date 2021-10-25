@@ -2,7 +2,7 @@ function signup(data){
     document.getElementById("signup-msg").innerHTML = data.msg; 
     if (data.success) {
         alert("Successfully sign up!");
-        clearInput();
+        clearSignup();
         displayLogin ();
         
         
@@ -16,10 +16,10 @@ function displayLogin () {
 
 }
 
-function clearInput () {
-    document.getElementById("new_username").innerHTML = "";
-    document.getElementById("new_password").innerHTML = "";
-    document.getElementById("repassword").innerHTML = "";
+function clearSignup () {
+    document.getElementById("new_username").value = "";
+    document.getElementById("new_password").value = "";
+    document.getElementById("repassword").value = "";
 
 }
 
@@ -41,12 +41,12 @@ function signupAjax(event) {
         .then(data => signup(data))
         .catch(error => console.error('Error:', error))
     
-        clearInput();   
+        clearSignup();
 
         
 }
 
 // Bind the AJAX call to button click
 document.getElementById("sign_up_submit").addEventListener("click", signupAjax, false);
-document.getElementById("reset_signup").addEventListener("click", clearInput, false);
+document.getElementById("reset_signup").addEventListener("click",clearSignup,false);
 document.getElementById("back_login").addEventListener("click",displayLogin,false);
