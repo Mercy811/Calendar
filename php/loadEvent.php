@@ -10,7 +10,7 @@ $json_str = file_get_contents('php://input');
 // This will store the data into an associative array
 $json_obj = json_decode($json_str, true);
 
-$user_id = $json_obj['user_id'];
+$user_id = $_SESSION['user_id'];
 $token = $json_obj['token'];
 
 if(!isset($_SESSION['user_id'])){
