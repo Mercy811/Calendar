@@ -167,11 +167,26 @@ function loadEvent(data){
         editBtn.innerHTML = "Edit";
         editBtn.id = "event-edit-" + eventId;
 
+        let title_label = document.createElement("label");
+        title_label.innerHTML = "*Title";
+        let st_label = document.createElement("label");
+        st_label.innerHTML = "*Start Time";
+        let et_label = document.createElement("label");
+        et_label.innerHTML = "*End Time";
+        let content_label = document.createElement("label");
+        content_label.innerHTML = "*Content";
+        let tag_label = document.createElement("label");
+        tag_label.innerHTML = "*Tag";
 
+        eventForm.appendChild(title_label);
         eventForm.appendChild(titleP);
+        eventForm.appendChild(st_label);
         eventForm.appendChild(startTimeP);
+        eventForm.appendChild(et_label);
         eventForm.appendChild(endTimeP);
+        eventForm.appendChild(content_label);
         eventForm.appendChild(contentP);
+        eventForm.appendChild(tag_label);
         eventForm.appendChild(tagP);
 
         eventForm.appendChild(contentDeleteBtn);
@@ -200,9 +215,6 @@ function loadEvent(data){
 
         document.getElementById(contentDeleteBtn.id).addEventListener("click", function(){deleteEvent(eventId)});
         document.getElementById(editBtn.id).addEventListener("click", function(){editEvent(eventId, titleP.value, startTimeP.value, endTimeP.value, contentP.value)});
-
-        //document.getElementById(contentP.id).addEventListener("input", editEvent(eventId, titleP.value, startTimeP.value, endTimeP.value, contentP.value),true);
-        //document.getElementById(titleP.id).addEventListener("input", editEvent(eventId, titleP.value, startTimeP.value, endTimeP.value, contentP.value),true);
 
     }
 
