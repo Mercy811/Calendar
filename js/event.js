@@ -52,8 +52,19 @@ function isDisplay(firstDate, LastDate, date){
     }
 }
 
-// ---------------
-// Delete EVENT
+// urgent event callback function
+function isUrgent(start_time){
+    let current_time = new Date();
+    time_inteval = (new Date(start_time).getTime() - new Date(current_time).getTime())/60000;
+    if (time_inteval < 120 && time_inteval >0) {  
+
+        return true;     
+    }
+    return false;
+}
+
+//delete event function
+
 function deleteEvent (eventId) {
     const event_id= eventId;
 
@@ -110,6 +121,15 @@ function loadEvent(data){
         let cellId = data[i].start_time.substring(0,10);
         if (!isDisplay(firstDateTimeStamp,lastdateTimeStamp,new Date(cellId).getTime())){
             continue;
+        }
+
+        if (isUrgent(data[i].start_time)) {
+            //加到reminder里
+            let reminderNode = document.getElementById("approaching_event");
+            let urgent_event= document.createElement("p");
+            urgent_event.innerHTML = "<strong>Title: </strong>" +data[i].title +" <strong>Start Time: </strong> "+ data[i].start_time + " " + "<strong>Duration: </strong>" + data[i].duration +" minutes <br>"  ;
+            reminderNode.appendChild(urgent_event);
+            
         }
         
         let eventId = data[i].event_id;
