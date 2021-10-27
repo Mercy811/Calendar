@@ -6,7 +6,9 @@
 
         $json_str = file_get_contents('php://input');
         $json_obj = json_decode($json_str, true);
-
+        // the server should respond with the events 
+        // for only the currently-logged-in user 
+        // (from the session)
         $user_id = $_SESSION['user_id'];
         $title = htmlentities($json_obj['title']);
         $event_content = htmlentities($json_obj['event_content']);

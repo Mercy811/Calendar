@@ -41,8 +41,8 @@ function loadTag(data){
         
     }
 }
-function loadTagAjax(user_id){
-    const data = {'user_id':user_id,'token':getCookie('token')};
+function loadTagAjax(){
+    const data = {'token':getCookie('token')};
     
     fetch("php/loadTag.php",{
         method: 'POST',

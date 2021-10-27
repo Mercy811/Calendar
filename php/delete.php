@@ -6,8 +6,10 @@
         $json_obj = json_decode($json_str, true);
 
         $event_id = htmlentities($json_obj['event_id']);
+        // the server should respond with the events 
+        // for only the currently-logged-in user 
+        // (from the session)
         $user_id = $_SESSION['user_id'];
-        // the server should respond with the events for only the currently-logged-in user (from the session)
         require 'database.php';
 
         $stmt = $mysqli->prepare("delete from events where user_id = ? and event_id = ?;");

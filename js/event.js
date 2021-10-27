@@ -18,10 +18,8 @@ function newEventAjax(event){
     const end_time = document.getElementById("end-time").value;
     const event_content = document.getElementById("event-content").value;
     const event_tag = document.getElementById("event-tag").value;
-    const user_id = getCookie("user_id");
 
-    const data = {'user_id':user_id,
-                  'title':title,
+    const data = {'title':title,
                   'start_time':start_time,
                   'end_time':end_time,
                   'duration':(new Date(end_time) - new Date(start_time))/60000,
@@ -58,10 +56,9 @@ function isDisplay(firstDate, LastDate, date){
 
 function deleteEvent (eventId) {
     const event_id= eventId;
-    const user_id = getCookie("user_id");
 
     // Make a URL-encoded string for passing POST data:
-    const data = { 'event_id': event_id, "user_id":user_id};
+    const data = { 'event_id': event_id};
 
     fetch("php/delete.php", {
         method: 'POST',
@@ -75,10 +72,8 @@ function deleteEvent (eventId) {
 //edit event function
 function editEvent (eventId, title, startTime, endTime, content) {
 
-    const user_id = getCookie("user_id");
     const data = {
                   'event_id': eventId, 
-                  "user_id":user_id,
                   'title':title,
                   'start_time':startTime,
                   'end_time':endTime,
@@ -211,13 +206,8 @@ function loadEvent(data){
 
 }
 
-function loadEventAjax(user_id){
-    const data = {'user_id':user_id,'token':getCookie('token')};
-    if (user_id != "100") {
-        document.getElementById("new-event-container").style.display = "block";
-        document.getElementById("tags-container").style.display = "block";
-    }
-        
+function loadEventAjax(){
+    const data = {'token':getCookie('token')};   
     
     fetch("php/loadEvent.php",{
         method: 'POST',
