@@ -52,8 +52,8 @@ function isDisplay(firstDate, LastDate, date){
     }
 }
 
-//delete event function
-
+// ---------------
+// Delete EVENT
 function deleteEvent (eventId) {
     const event_id= eventId;
 
@@ -69,7 +69,8 @@ function deleteEvent (eventId) {
         .catch(error => console.error('Error:', error))
 }
 
-//edit event function
+// ---------------
+// Edit EVENT
 function editEvent (eventId, title, startTime, endTime, content) {
 
     const data = {
@@ -143,6 +144,7 @@ function loadEvent(data){
         let eventDialog = document.createElement("div");
         eventDialog.id = "event-dialog-"+eventId;
         eventDialog.title = "Event Detail";
+        eventDialog.className = "event-dialog";
         let eventForm = document.createElement("form");
 
         let titleP = document.createElement("input");

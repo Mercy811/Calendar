@@ -58,7 +58,9 @@ document.getElementById("previous-month-btn").addEventListener("click", function
     clearCalendar();
     loadCalendar(currentMonth);
     document.getElementById("selected-month").innerHTML = currentMonth.year + " " + getMonthName(currentMonth);
-    loadEventAjax();
+    if (getCookie("username") != "Guest"){
+        loadEventAjax();
+    }
 }, false);
 
 document.getElementById("current-month-btn").addEventListener("click", function (event) {
@@ -66,7 +68,9 @@ document.getElementById("current-month-btn").addEventListener("click", function 
     clearCalendar();
     loadCalendar(currentMonth);
     document.getElementById("selected-month").innerHTML = currentMonth.year + " " + getMonthName(currentMonth);
-    loadEventAjax();
+    if (getCookie("username") != "Guest"){
+        loadEventAjax();
+    }
 }, false);
 
 document.getElementById("next-month-btn").addEventListener("click", function (event) {
@@ -74,7 +78,9 @@ document.getElementById("next-month-btn").addEventListener("click", function (ev
     clearCalendar();
     loadCalendar(currentMonth);
     document.getElementById("selected-month").innerHTML = currentMonth.year + " " + getMonthName(currentMonth);
-    loadEventAjax();
+    if (getCookie("username") != "Guest"){
+        loadEventAjax();
+    }
 }, false);
 
 

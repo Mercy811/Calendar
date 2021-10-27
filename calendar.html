@@ -20,7 +20,7 @@
         <p><input type="password" id="password" placeholder="password"></p>
         <button id="login-btn">Login</button>
         <button id="signup-btn">Sign Up Here</button>
-        <button id="reset_login">reset</button>
+        <button id="reset_login">Reset</button>
         <button id="login_as_guest">Login as a guest</button>
         <p id="login-msg"></p>
     
@@ -46,20 +46,12 @@
 
         }
 
-        function guestLogin(){
-            document.getElementById("username").value = "guest";
-            document.getElementById("password").value = "000000000000";
-            loginAjax();
-        }
-
         function clearLogin(){
             document.getElementById("username").value = "";
             document.getElementById("password").value = "";
         }
 
-
         document.getElementById("signup-btn").addEventListener("click",displaySignUp,false);
-        document.getElementById("login_as_guest").addEventListener("click",guestLogin,false);
         document.getElementById("reset_login").addEventListener("click",clearLogin,false);
     </script>
 

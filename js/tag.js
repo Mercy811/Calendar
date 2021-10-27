@@ -27,10 +27,12 @@ function loadTag(data){
         }
         let tagLabel = document.createElement("label");
         tagLabel.innerHTML = data[i].tag;
+        tagLabel.className = className = "tags";
 
         let tagCheckbox = document.createElement("input");
         tagCheckbox.setAttribute("type","checkbox");
         tagCheckbox.id = data[i].tag;
+        tagCheckbox.className = "tags";
         tagCheckbox.addEventListener("change",tagChecked,false);
 
         let newline = document.createElement("br");

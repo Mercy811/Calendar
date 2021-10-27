@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', (event)=>{
+function loadPage(){
     let username = getCookie("username");
 
     if (username){
@@ -12,7 +12,11 @@ document.addEventListener('DOMContentLoaded', (event)=>{
         document.getElementById("welcome-user").innerHTML = "Welcome, "+username;
         
 
-        loadEventAjax();
-        loadTagAjax();
+        if (getCookie("username") != "Guest"){
+            loadEventAjax();
+            loadTagAjax();
+        }  
     }
-})
+}
+
+// document.addEventListener('DOMContentLoaded', loadPage, false);

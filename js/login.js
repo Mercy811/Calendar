@@ -1,3 +1,19 @@
+function guestLogin(){
+    document.getElementById("login-container").style.display = "none";
+    document.getElementById("signup-container").style.display = "none";
+    document.getElementById("user-info-container").style.display = "block";
+    document.getElementById("tags-container").style.display = "none";
+    document.getElementById("new-event-container").style.display = "none";
+    document.getElementById("calendar-container").style.display = "block";
+    
+    let events = document.getElementsByClassName("event-btn");
+    while(events.length>0){
+        events[0].parentNode.removeChild(events[0]);
+    }
+    
+    setCookie("username","Guest");
+}
+
 function loginJudge(data){
     if (data.success){
         document.getElementById("login-container").style.display = "none";
@@ -6,13 +22,15 @@ function loginJudge(data){
         setCookie("username",data.username,1);
         setCookie("token",data.token,1)
         document.getElementById("login-msg").innerHTML = "";
-        loadEventAjax()
+        if (getCookie("username") != "Guest"){
+            // loadEventAjax();
+            loadPage();
+        }
     }else{
         document.getElementById("login-msg").innerHTML = data.msg;
     }
     
 }
-
 
 function loginAjax(event) {
     const username = document.getElementById("username").value; // Get the username from the form
@@ -38,4 +56,6 @@ function clearInput () {
 // Bind the AJAX call to button click
 document.getElementById("login-btn").addEventListener("click", loginAjax, false);
 // document.getElementById("reset_login").addEventListener("click", function(){clearInput();}, false);
+
+document.getElementById("login_as_guest").addEventListener("click",guestLogin,false);
 
