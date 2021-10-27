@@ -47,6 +47,7 @@ document.getElementById("logout-btn").addEventListener("click", function (event)
     document.getElementById("calendar-container").style.display = "none";
     document.getElementById("tags-container").style.display = "none";
     document.getElementById("new-event-container").style.display = "none";
+    document.getElementById("user-info-container").style.display = "none";
     document.getElementById("welcome-user").innerHTML = "";
     document.getElementById("username").value = "";
     document.getElementById("password").value = "";

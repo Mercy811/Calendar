@@ -15,6 +15,8 @@ function loadCalendar(monthObject) {
 
         document.getElementById("calendar-content-table").appendChild(newTr);
     }
+
+    todayRed();
 }
 
 function clearCalendar() {
