@@ -10,3 +10,6 @@ Creative part:
 2. Highlight current day
 3. Display events in corresponding table cell 
 4. Urgent reminder for events in 2 hours from current time
+
+
+-1: Month and year do not change when going to different month, -2: Events cannot be edited, and sends user to log in when creating, deleting, editing. -3: Session cookies are not Http only, -2: Doesn't pass html validation, -8: Creative portion insignificant, and features do not work (wrong current day)
